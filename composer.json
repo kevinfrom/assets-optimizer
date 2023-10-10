@@ -1,0 +1,19 @@
+{
+    "name": "kevinfrom/assets-optimizer",
+    "description": "A PHP api to upload, manage and optimize assets",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AssetsOptimizer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kevin From",
+            "email": "kevin@kevinfrom.dk"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
