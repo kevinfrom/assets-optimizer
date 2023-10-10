@@ -15,5 +15,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "ext-mbstring": "*",
+        "ext-gd": "*",
+        "ext-fileinfo": "*"
+    }
 }

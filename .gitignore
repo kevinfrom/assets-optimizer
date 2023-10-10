@@ -3,3 +3,4 @@
 vendor
 webroot/uploads
 webroot/_optimized
+config/app.local.php
