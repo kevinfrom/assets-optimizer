@@ -4,6 +4,7 @@ namespace AssetsOptimizer\Controller;
 
 use AssetsOptimizer\Routing\BadRequestException;
 use AssetsOptimizer\Routing\ImageConvertException;
+use AssetsOptimizer\Routing\ImageDeleteException;
 use AssetsOptimizer\Routing\ImageResizeException;
 use AssetsOptimizer\Routing\NotFoundException;
 use AssetsOptimizer\Routing\Router;
@@ -249,5 +250,28 @@ class ImagesController extends Controller
         }
 
         return $resultPath;
+    }
+
+    #[NoReturn] public function delete(): void
+    {
+        Router::getInstance()->requireMethod(Router::HTTP_METHOD_DELETE);
+
+        $file = Router::getInstance()->requireQueryParameter('file');
+        $filePath = UPLOADS_DIR . DS . $file;
+
+        if (file_exists($filePath) === false) {
+            throw new NotFoundException();
+        }
+
+        $deleted = unlink($filePath);
+
+        if ($deleted === false) {
+            throw new ImageDeleteException($filePath);
+        }
+
+        $this->respondWithJson([
+            'status' => 'ok',
+            'data' => "Image $file was deleted.",
+        ]);
     }
 }
