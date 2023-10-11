@@ -31,14 +31,14 @@ $requiredMaxPostInBytes = 128 * 1024 * 1024;
 $postMaxSize = parseByteStringAsBytes(ini_get('post_max_size'));
 
 if ($postMaxSize < $requiredMaxPostInBytes) {
-    trigger_error('"Minimum PHP "post_max_size" limit of 128MB required."', E_USER_ERROR);
+    trigger_error('Minimum PHP "post_max_size" limit of 128MB required.', E_USER_ERROR);
 }
 
 $requiredUploadMaxFilesizeInBytes = 128 * 1024 * 1024;
 $uploadMaxFilesize = parseByteStringAsBytes(ini_get('upload_max_filesize'));
 
 if ($uploadMaxFilesize < $requiredUploadMaxFilesizeInBytes) {
-    trigger_error('"Minimum PHP "upload_max_filesize" of 128MB required."', E_USER_ERROR);
+    trigger_error('Minimum PHP "upload_max_filesize" of 128MB required.', E_USER_ERROR);
 }
 
 ini_set('display_errors', false);
