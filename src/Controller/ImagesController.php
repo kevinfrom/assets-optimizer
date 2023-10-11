@@ -13,6 +13,23 @@ use JetBrains\PhpStorm\NoReturn;
 
 class ImagesController extends Controller
 {
+    #[NoReturn] public function index(): void
+    {
+        if (file_exists(UPLOADS_DIR) === false && is_dir(UPLOADS_DIR) === false) {
+            mkdir(UPLOADS_DIR, 0770);
+        }
+
+        $files = array_filter(scandir(UPLOADS_DIR), static function (string $fileName) {
+            return $fileName !== '.' && $fileName !== '..';
+        });
+
+        natsort($files);
+
+        $this->respondWithJson([
+            'status' => 'ok',
+            'data' => array_values($files),
+        ]);
+    }
 
     #[NoReturn] public function get(): void
     {
