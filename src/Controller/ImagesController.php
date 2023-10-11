@@ -15,6 +15,8 @@ class ImagesController extends Controller
 {
     #[NoReturn] public function index(): void
     {
+        Router::getInstance()->requireQueryParameter(Router::HTTP_METHOD_GET);
+
         if (file_exists(UPLOADS_DIR) === false && is_dir(UPLOADS_DIR) === false) {
             mkdir(UPLOADS_DIR, 0770);
         }
