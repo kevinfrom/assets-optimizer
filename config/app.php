@@ -6,4 +6,5 @@
 
 return [
     'debug' => false,
+    'api_keys' => [],
 ];

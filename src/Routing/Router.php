@@ -43,7 +43,6 @@ class Router
             $baseRoute = "/$baseRoute";
         }
 
-        $controller->initialize();
         $classMethods = array_map(static fn($i) => mb_strtolower($i), get_class_methods($controller));
 
         foreach ($classMethods as $method) {
@@ -63,7 +62,18 @@ class Router
         }
     }
 
-    public function requireQueryParameter(string $key): ?string
+    public function requireHeader(string $header): string
+    {
+        $header = $this->getHeader($header);
+
+        if (empty($header)) {
+            throw new BadRequestException("Required HTTP header \"$header\" is missing.");
+        }
+
+        return $header;
+    }
+
+    public function requireQueryParameter(string $key): string
     {
         $result = $this->getQueryParam($key);
 
@@ -144,6 +154,9 @@ class Router
             throw new NotFoundException();
         }
 
-        call_user_func($route);
+        [$controller, $method] = $route;
+
+        $controller->initialize();
+        $controller->{$method}();
     }
 }
