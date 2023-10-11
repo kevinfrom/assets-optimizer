@@ -19,7 +19,7 @@ abstract class Controller
             throw new MissingApiKeysException();
         }
 
-        $apiKey = Router::getInstance()->requireHeader('Api-Key');
+        $apiKey = Router::getInstance()->requireQueryParameter('key');
 
         if (in_array($apiKey, $allowedApiKeys) === false) {
             throw new UnauthorizedException();

@@ -62,17 +62,6 @@ class Router
         }
     }
 
-    public function requireHeader(string $header): string
-    {
-        $header = $this->getHeader($header);
-
-        if (empty($header)) {
-            throw new BadRequestException("Required HTTP header \"$header\" is missing.");
-        }
-
-        return $header;
-    }
-
     public function requireQueryParameter(string $key): string
     {
         $result = $this->getQueryParam($key);
