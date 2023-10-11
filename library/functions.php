@@ -28,3 +28,20 @@ function extractKeyRecursively(array $array, string $key, mixed $default = null)
 
     return $result;
 }
+
+function parseByteStringAsBytes(string $value): int
+{
+    $result = intval($value);
+
+    if (str_ends_with($value, 'G')) {
+        $result = intval($value) * 1024 * 1024 * 1024;
+    } elseif (str_ends_with($value, 'M')) {
+        $result = intval($value) * 1024 * 1024;
+    } elseif (str_ends_with($value, 'K')) {
+        $result = intval($value) * 1024;
+    } else {
+        $result = intval($value);
+    }
+
+    return $result;
+}
