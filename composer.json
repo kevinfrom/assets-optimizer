@@ -18,6 +18,12 @@
     "require": {
         "ext-mbstring": "*",
         "ext-gd": "*",
-        "ext-fileinfo": "*"
+        "ext-fileinfo": "*",
+        "sentry/sdk": "^3.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace AssetsOptimizer;
 use AssetsOptimizer\Configuration\Config;
 use AssetsOptimizer\Controller\ImagesController;
 use AssetsOptimizer\Routing\Router;
+use Sentry;
 
 class Application
 {
@@ -22,6 +23,11 @@ class Application
             require_once $configPath,
             require_once $localConfigPath
         ));
+
+        Sentry\init([
+            'dsn' => 'https://0546d80e8babfd80b63d14ce8c36de40@o4505521775706112.ingest.sentry.io/4506065174134784',
+            'environment' => Config::getInstance()->getConfig('debug') ? 'development' : 'production',
+        ]);
 
         Router::getInstance()->addControllerRoute(ImagesController::class, '/images');
     }

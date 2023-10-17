@@ -6,5 +6,5 @@ use Exception;
 
 class UploadException extends Exception
 {
-
+    protected $code = 500;
 }
