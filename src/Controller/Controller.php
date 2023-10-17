@@ -42,11 +42,11 @@ abstract class Controller
 
         header('Pragma: public');
         header('Content-Length: ' . filesize($filePath));
-        header('Cache-Control: no-cache');
-        header('Expires: 0');
+        header('Cache-Control: max-age=604800, public');
         header('ETag: ' . hash_file('md5', $filePath));
         header('Content-Type: ' . mime_content_type($filePath));
         header('Content-Disposition: inline; filename="' . basename($filePath) . '"');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', filemtime($filePath)) . ' GMT');
 
         echo file_get_contents($filePath);
         exit;
