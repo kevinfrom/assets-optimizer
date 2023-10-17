@@ -5,7 +5,7 @@ namespace AssetsOptimizer\Configuration;
 class Config
 {
     private static Config $_instance;
-    private array $_config;
+    private array $_config = [];
 
     private function __construct()
     {

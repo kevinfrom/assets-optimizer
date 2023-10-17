@@ -15,7 +15,7 @@ class Application
         $localConfigPath = dirname(__DIR__) . DS . 'config' . DS . 'app.local.php';
 
         if (file_exists($configPath) === false || file_exists($localConfigPath) === false) {
-            throw new MissingConfigException();
+            throw new MissingConfigException($configPath, $localConfigPath);
         }
 
         Config::getInstance()->setConfig(array_merge(
