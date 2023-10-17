@@ -36,7 +36,7 @@ class ImagesController extends Controller
 
     #[NoReturn] public function get(): void
     {
-        Router::getInstance()->requireMethod(Router::HTTP_METHOD_GET);
+        Router::getInstance()->requireMethods([Router::HTTP_METHOD_GET, Router::HTTP_METHOD_HEAD]);
 
         $file = Router::getInstance()->requireQueryParameter('file');
         $format = mb_strtolower(Router::getInstance()->requireQueryParameter('f'));

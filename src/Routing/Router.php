@@ -11,6 +11,7 @@ class Router
     public const HTTP_METHOD_PUT = 'PUT';
     public const HTTP_METHOD_PATCH = 'PATCH';
     public const HTTP_METHOD_DELETE = 'DELETE';
+    public const HTTP_METHOD_HEAD = 'HEAD';
 
     private static Router $_instance;
     private array $_routesMap = [];
@@ -59,6 +60,13 @@ class Router
     {
         if (mb_strtoupper($_SERVER['REQUEST_METHOD']) !== $method) {
             throw new MethodNotAllowedException($method);
+        }
+    }
+
+    public function requireMethods(array $methods): void
+    {
+        if (in_array(mb_strtoupper($_SERVER['REQUEST_METHOD']), $methods) === false) {
+            throw new MethodNotAllowedException(implode(', ', $methods));
         }
     }
 
