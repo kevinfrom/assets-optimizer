@@ -17,6 +17,7 @@ class ErrorHandler
 
         if ($isDebug) {
             http_response_code(500);
+            header('X-Error: ' . $e->getMessage());
             dd($e);
         }
 
